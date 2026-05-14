@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Form</title>
+
+  <style>
+    /* TT Drugs Font */
+    @font-face {
+      font-family: 'TT Drugs';
+      src: url('./fonts/TTDrugs-Regular.woff2') format('woff2'),
+           url('./fonts/TTDrugs-Regular.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f7f7f7;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .contact-container {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    h1 {
+      margin-bottom: 24px;
+      text-align: center;
+      color: #111;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-family: 'TT Drugs', sans-serif;
+      font-size: 16px;
+      letter-spacing: 0.5px;
+      color: #222;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      background-color: #111827;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #1f2937;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="contact-container">
+    <h1>Contact Us</h1>
+
+    <form action="https://formsubmit.co/sabrina@bhatsend.com" method="POST">
+
+      <!-- Prevent Spam -->
+      <input type="hidden" name="_captcha" value="false">
+
+      <!-- Redirect After Submit -->
+      <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input 
+          type="text" 
+          id="name" 
+          name="name" 
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea 
+          id="message" 
+          name="message" 
+          required
+        ></textarea>
+      </div>
+
+      <button type="submit">Send Message</button>
+
+    </form>
+  </div>
+
+</body>
+</html>
