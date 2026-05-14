@@ -1,36 +1,241 @@
-<form id="contactForm">
-  <label for="name">Name</label>
-  <input id="name" name="name" required>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BhatSend Contact</title>
 
-  <label for="email">Email</label>
-  <input id="email" name="email" type="email" required>
+  <style>
+    /* TT Drugs Font */
+    @font-face {
+      font-family: 'TT Drugs';
+      src: url('./fonts/TTDrugs-Regular.woff2') format('woff2'),
+           url('./fonts/TTDrugs-Regular.woff') format('woff');
+    }
 
-  <label for="message">Message</label>
-  <textarea id="message" name="message" required></textarea>
+    * {
+      box-sizing: border-box;
+    }
 
-  <button type="submit">Send</button>
-</form>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+      background:
+        linear-gradient(
+          135deg,
+          #0f172a,
+          #1e3a8a,
+          #312e81
+        );
+      font-family: Arial, sans-serif;
+    }
 
-<script>
-document.getElementById("contactForm").addEventListener("submit", async function(e) {
-  e.preventDefault();
+    .contact-card {
+      width: 100%;
+      max-width: 620px;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      padding: 48px;
+      box-shadow:
+        0 20px 60px rgba(0,0,0,0.25);
+    }
 
-  const formData = {
-    name: document.getElementById("name").value,
-    email: document.getElementById("email").value,
-    message: document.getElementById("message").value
-  };
+    .logo {
+      text-align: center;
+      margin-bottom: 10px;
+    }
 
-  await fetch("https://script.google.com/macros/s/AKfycbz7aVBkL3CmUKlW2tzKzhKQZNeSFJii86inhqVezaKBcGfA2vdY_j99ftiPgDd2E9bU/exec", {
-    method: "POST",
-    mode: "no-cors",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(formData)
-  });
+    .logo img {
+      max-width: 90px;
+      height: auto;
+    }
 
-  alert("Thank you! Your message has been sent.");
-  this.reset();
-});
-</script>
+    h1 {
+      text-align: center;
+      margin: 0 0 10px;
+      font-size: 42px;
+      color: #111827;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #6b7280;
+      margin-bottom: 40px;
+      line-height: 1.5;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-family: 'TT Drugs', sans-serif;
+      font-size: 16px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #111827;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 16px 18px;
+      border: 1px solid #d1d5db;
+      border-radius: 14px;
+      font-size: 16px;
+      transition: all 0.2s ease;
+      background: white;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #312e81;
+      box-shadow:
+        0 0 0 4px rgba(79,70,229,0.15);
+    }
+
+    textarea {
+      min-height: 160px;
+      resize: vertical;
+    }
+
+    button {
+      width: 100%;
+      padding: 18px;
+      border: none;
+      border-radius: 14px;
+      background: linear-gradient(
+        135deg,
+        #312e81,
+        #1d4ed8
+      );
+      color: white;
+      font-size: 17px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 10px 25px rgba(49,46,129,0.35);
+    }
+
+    .success-message {
+      display: none;
+      text-align: center;
+      margin-top: 24px;
+      color: #15803d;
+      font-weight: 600;
+    }
+
+    @media (max-width: 640px) {
+      .contact-card {
+        padding: 32px 24px;
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="contact-card">
+
+    <!-- Optional Logo -->
+    <!--
+    <div class="logo">
+      <img src="logo.png" alt="Logo">
+    </div>
+    -->
+
+    <h1>Contact Us</h1>
+
+    <p class="subtitle">
+      We'd love to hear from you. Send us a message and we'll get back to you soon.
+    </p>
+
+    <form id="contactForm">
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          id="name"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea
+          id="message"
+          required
+        ></textarea>
+      </div>
+
+      <button type="submit">
+        Send Message
+      </button>
+
+      <div class="success-message" id="successMessage">
+        Thank you! Your message has been sent.
+      </div>
+
+    </form>
+
+  </div>
+
+  <script>
+    document
+      .getElementById("contactForm")
+      .addEventListener("submit", async function(e) {
+
+      e.preventDefault();
+
+      const formData = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        message: document.getElementById("message").value
+      };
+
+      await fetch("https://script.google.com/macros/s/AKfycbz7aVBkL3CmUKlW2tzKzhKQZNeSFJii86inhqVezaKBcGfA2vdY_j99ftiPgDd2E9bU/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
+
+      document
+        .getElementById("successMessage")
+        .style.display = "block";
+
+      this.reset();
+    });
+  </script>
+
+</body>
+</html>
